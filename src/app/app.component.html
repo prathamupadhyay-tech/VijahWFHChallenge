@@ -1,0 +1,74 @@
+<div class="container">
+  <form #productForm="ngForm" (ngSubmit)="onSubmit(productForm)">
+    <table class="products">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Quantity</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let p of productArray">
+          <td>{{ p.productName }}</td>
+          <td>{{ p.productQuantity }}</td>
+          
+        </tr>
+        <tr>
+          <td>
+            <select
+              class="product-name-select"
+              name="productName"
+              [(ngModel)]="selectedProductName"
+              required
+            >
+              <option value="">Choose Product</option>
+              <option value="Shirts">Shirts</option>
+              <option value="tshirts">T-shirts</option>
+              <option value="Pencil">Pencil</option>
+              <option value="Eraser">Eraser</option>
+              <option value="Pens">Pens</option>
+            </select>
+          </td>
+          <td>
+            <select
+              class="product-quantity-select"
+              name="productQuantity"
+              [(ngModel)]="selectedProductQuantity"
+              required
+            >
+              <option value="">Choose Quantity</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </td>
+          <td>
+            <button class="show-order-btn" type="submit">Add</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </form>
+
+  <div>
+    <button class="show-order-btn" (click)="toggleTableVisibility()">Show order</button>
+  </div>
+  <!-- showing the table  -->
+  <div class="showing-table-div" [ngClass]="{ 'd-block': isTableVisible, 'd-none': !isTableVisible }">
+    <table class="products">
+      <tr *ngFor="let p of productArray">
+        <td>{{ p.productName }}</td>
+        <td>{{ p.productQuantity }}</td>
+       
+      </tr>
+    </table>
+  </div>
+
+
+  <div>
+    <button class="show-order-btn" (click)="speakOrder()">What is my order?</button>
+  </div>
+</div>
